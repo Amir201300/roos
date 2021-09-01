@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Controllers\Manage\BaseController;
 
 
-class UserResource extends JsonResource
+class CountryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,13 +18,8 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            //'status' => (int)$this->status,
-            'firstName'=>$this->firstName,
-            'lastName'=>$this->lastName,
-            'country'=>$this->country ? new CountryResource($this->country) : null,
-            'token' => $this->user_token,
+            'countryCode' => $this->countryCode,
+            'icon' => getImageUrl('Country',$this->icon),
         ];
     }
 }

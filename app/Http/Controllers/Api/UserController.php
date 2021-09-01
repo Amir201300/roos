@@ -129,17 +129,14 @@ class UserController extends Controller
     {
         $user=Auth::user();
         $lang=$user->lang;
-        if(!$request->password){
-            $msg=$lang =='en'? 'please enter new password'  : 'من فضلك ادخل كلمة السر الجديدة' ;
-            return $this->apiResponseMessage(0,$msg,200);
+        $password = Hash::check($request->oldPassword, $user->password);
+        if ($password == false) {
+            $msg = $lang == 'ar' ? 'كلمة السر القديمة غير صحيحة' : 'Old Password is not correct';
+            return $this->apiResponseMessage(0, $msg, 200);
         }
-        if($request->password != $request->password_confirm){
-            $msg= $lang =='en' ? 'The password confirmation does not match' :  'كلمتا السر غير متطابقتان'  ;
-            return $this->apiResponseMessage(0,$msg,200);
-        }
-        $user->password=Hash::make($request->password);
+        $user->password=Hash::make($request->newPassword);
         $user->save();
-        $msg=$lang=='en' ? 'password updated successfully' : 'تم تغيير كلمة السر بنجاح' ;
+        $msg=$lang=='en' ? 'Password Updated Successfully' : 'تم تغيير كلمة السر بنجاح' ;
         return $this->apiResponseMessage(1,$msg,200);
     }
 

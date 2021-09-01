@@ -35,21 +35,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-    public function my_wishlist()
-    {
-        return $this->belongsToMany('App\Models\Products','whishlists','user_id','product_id');
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country(){
+        return $this->belongsTo(Country::class,'country_id');
     }
 
-    public function my_cart()
-    {
-        return $this->belongsToMany('App\Models\Products','carts','user_id','product_id')
-            ->withPivot('color_id','size_id','quantity');
-    }
 
-    public function orders()
-    {
-        return $this->hasMany('App\Models\Order','user_id');
-    }
 
 }

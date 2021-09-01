@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="8eb2302a-6d21-4d84-b6c6-c82ba6277cd6" name="roos" url="">
+        <fileTransfer host="roseresorts-qa.com" port="21" rootFolder="/roosApi.roseresorts-qa.com">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
